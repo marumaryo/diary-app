@@ -8,19 +8,27 @@
 </head>
 <body>
 
-    <!-- ヘッダー：中央に選択された日付を表示 -->
-    <div class="header" id="detailHeader"></div>
+<!-- ヘッダー（共通）読み込み位置 -->
+<div id="headerContainer"></div>
 
-    <!-- 本文エリア -->
-    <div class="content-area">
-        <textarea id="memoText"></textarea>
-    </div>
+<!-- 日付バー：年月日曜日表示・矢印左右 -->
+<div class="date-bar">
+    <button id="prevBtn" onclick="prevDay()">◀</button>
+    <div class="center" id="dateCenter">2025年11月26日(火)</div>
+    <button id="nextBtn" onclick="nextDay()">▶</button>
+</div>
 
-    <!-- 下部ボタン -->
-    <div class="footer-btns">
-        <button class="btn-back" onclick="goBack()">戻る</button>
-        <button class="btn-save" onclick="saveMemo()">保存</button>
-    </div>
+<!-- メモ編集 -->
+<div class="content-area">
+    <textarea id="memoText"></textarea>
+</div>
+
+<!-- 下部ボタン -->
+<div class="footer-btns">
+    <button class="btn-back" onclick="goBack()">戻る</button>
+    <button class="btn-save" onclick="saveMemo()">保存</button>
+</div>
+
 
     <script src="main.js"></script>
 </body>
