@@ -1,0 +1,29 @@
+<!-- トップ画面：カレンダー -->
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <title>日記カレンダー</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- ヘッダー（共通） -->
+    <div class="header">
+        日記
+    </div>
+
+    <div class="calendar-container">
+        <!-- カレンダー領域 -->
+        <div class="calendar-header">
+            <button onclick="prevMonth()">◀</button>
+            <div id="monthTitle"></div>
+            <button onclick="nextMonth()">▶</button>
+        </div>
+
+        <div class="calendar-grid" id="calendarGrid"></div>
+    </div>
+
+    <script src="main.js"></script>
+</body>
+</html>
