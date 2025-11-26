@@ -1,0 +1,123 @@
+/* ================================================
+   共通設定：フォント・レイアウト
+   ================================================ */
+body {
+    font-family: "Meiryo UI", sans-serif;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+}
+
+/* -----------------------------------------------
+   ヘッダー（上部固定）
+   ----------------------------------------------- */
+.header {
+    background: #eee;
+    padding: 12px;
+    text-align: center;
+    font-size: 20px;
+    font-weight: bold;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 100;
+}
+
+/* -----------------------------------------------
+   下部固定ボタンエリア（詳細画面）
+   ----------------------------------------------- */
+.footer-btns {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    display: flex;
+}
+
+.footer-btns button {
+    flex: 1;
+    padding: 15px;
+    border: none;
+    font-size: 18px;
+}
+
+/* 保存ボタン（緑） */
+.btn-save {
+    background: #4caf50;
+    color: white;
+}
+
+/* 戻るボタン（白） */
+.btn-back {
+    background: #fff;
+    border-top: 1px solid #ccc;
+}
+
+/* -----------------------------------------------
+   カレンダー
+   ----------------------------------------------- */
+.calendar-container {
+    margin-top: 60px; /* ヘッダー分の余白 */
+    padding: 10px;
+}
+
+.calendar-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 20px;
+    margin-bottom: 10px;
+}
+
+.calendar-grid {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 3px;
+}
+
+.day-cell {
+    border: 1px solid #ccc;
+    text-align: center;
+    padding: 8px 0;
+    min-height: 45px;
+    background: #fafafa;
+    position: relative;
+}
+
+/* 記録がある日の ✔ 表示 */
+.day-has-entry::after {
+    content: "✔";
+    position: absolute;
+    bottom: 4px;
+    right: 6px;
+    font-size: 14px;
+    color: green;
+}
+
+/* 日付クリック可能 */
+.day-cell:hover {
+    background: #e8f4ff;
+    cursor: pointer;
+}
+
+/* -----------------------------------------------
+   詳細画面：本文エリア
+   ----------------------------------------------- */
+.content-area {
+    margin-top: 70px;
+    margin-bottom: 80px; /* 下部ボタンの分 */
+    padding: 10px;
+    height: calc(100vh - 160px);
+}
+
+textarea {
+    width: 100%;
+    height: 100%;
+    resize: none;
+    border: 1px solid #ccc;
+    padding: 10px;
+    font-size: 16px;
+    box-sizing: border-box;
+    overflow-y: scroll;
+}

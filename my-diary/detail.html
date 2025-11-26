@@ -1,0 +1,27 @@
+<!-- 詳細画面：日付ごとのメモ編集 -->
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <title>日記詳細</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- ヘッダー：中央に選択された日付を表示 -->
+    <div class="header" id="detailHeader"></div>
+
+    <!-- 本文エリア -->
+    <div class="content-area">
+        <textarea id="memoText"></textarea>
+    </div>
+
+    <!-- 下部ボタン -->
+    <div class="footer-btns">
+        <button class="btn-back" onclick="goBack()">戻る</button>
+        <button class="btn-save" onclick="saveMemo()">保存</button>
+    </div>
+
+    <script src="main.js"></script>
+</body>
+</html>
