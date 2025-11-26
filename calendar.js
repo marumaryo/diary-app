@@ -1,5 +1,40 @@
 let current = new Date();       // カレンダー表示基準
-let holidays = {};              // 祝日情報（JSON）
+
+// 祝日データを直接組み込み
+const holidays = {
+  "2025-01-01": "元日",
+  "2025-01-13": "成人の日",
+  "2025-02-11": "建国記念の日",
+  "2025-03-21": "春分の日",
+  "2025-04-29": "昭和の日",
+  "2025-05-03": "憲法記念日",
+  "2025-05-04": "みどりの日",
+  "2025-05-05": "こどもの日",
+  "2025-07-21": "海の日",
+  "2025-09-15": "敬老の日",
+  "2025-09-23": "秋分の日",
+  "2025-10-13": "体育の日",
+  "2025-11-03": "文化の日",
+  "2025-11-23": "勤労感謝の日",
+  "2025-11-24": "振替休日（勤労感謝の日）",
+  "2025-12-23": "天皇誕生日",
+  
+  "2026-01-01": "元日",
+  "2026-01-12": "成人の日",
+  "2026-02-11": "建国記念の日",
+  "2026-03-20": "春分の日",
+  "2026-04-29": "昭和の日",
+  "2026-05-03": "憲法記念日",
+  "2026-05-04": "みどりの日",
+  "2026-05-05": "こどもの日",
+  "2026-07-20": "海の日",
+  "2026-09-21": "敬老の日",
+  "2026-09-23": "秋分の日",
+  "2026-10-12": "体育の日",
+  "2026-11-03": "文化の日",
+  "2026-11-23": "勤労感謝の日",
+  "2026-12-23": "天皇誕生日"
+};
 
 const weekdays = [
     { label: "月", type: "weekday" },
@@ -10,6 +45,8 @@ const weekdays = [
     { label: "土", type: "saturday" },
     { label: "日", type: "sunday" }
 ];
+
+
 
 // 曜日行描画
 function renderWeekdays() {
@@ -79,10 +116,7 @@ function prevMonth() { current.setMonth(current.getMonth() - 1); renderCalendar(
 function nextMonth() { current.setMonth(current.getMonth() + 1); renderCalendar(); }
 
 // 初期描画
-renderWeekdays();
-
-// 祝日JSON取得
-fetch("holidays.json")
-    .then(res => res.json())
-    .then(data => { holidays = data; renderCalendar(); })
-    .catch(err => { console.error(err); holidays = {}; renderCalendar(); });
+document.addEventListener("DOMContentLoaded", () => {
+    renderWeekdays();
+    renderCalendar();
+});
