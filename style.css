@@ -23,19 +23,18 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
-    font-family: "メイリオ", "Meiryo UI", sans-serif;
     z-index: 1000;
 }
 
 /* -----------------------------------------------
-   共通日付バー（カレンダー・詳細画面共通）
+   共通日付バー
    ----------------------------------------------- */
 .date-bar {
     position: sticky;
-    top: 50px;           /* ヘッダー下に固定 */
+    top: 50px;
     background-color: #fafafa;
     display: flex;
-    justify-content: center; /* 中央寄せの基本 */
+    justify-content: center;
     align-items: center;
     gap: 10px;
     padding: 5px 10px;
@@ -43,58 +42,21 @@ body {
     width: 100%;
 }
 
-/* 中央の年月/年月日曜日 */
 .date-bar .center {
     text-align: center;
     font-weight: bold;
     min-width: 150px;
 }
 
-/* 日付バーのボタン */
-.date-bar button#nextMonth,
-.date-bar button#nextDay {
-    position: absolute;
-    right: 10px;
-}
-
-/* -----------------------------------------------
-   下部固定ボタンエリア（詳細画面）
-   ----------------------------------------------- */
-.footer-btns {
-    position: fixed;
-    bottom: 0;
-    width: 100%;
-    display: flex;
-}
-
-/* ボタンは横並びで均等幅 */
-.footer-btns button {
-    flex: 1;           /* 均等幅 */
-    padding: 15px;
-    border: none;
-    font-size: 18px;
-}
-
-/* 保存ボタン（緑） */
-.btn-save {
-    background: #4caf50;
-    color: white;
-}
-
-/* 戻るボタン（白） */
-.btn-back {
-    background: #fff;
-    border-top: 1px solid #ccc;
-}
-
 /* -----------------------------------------------
    カレンダー
    ----------------------------------------------- */
 .calendar-container {
-    margin-top: 60px;
+    margin-top: 60px;   /* ←あなたの指定を維持 */
     padding: 10px;
 }
 
+/* 曜日行 */
 .calendar-weekdays {
     display: grid;
     grid-template-columns: repeat(7, 1fr);
@@ -109,11 +71,11 @@ body {
 .calendar-weekdays div {
     border-left: 1px solid #ccc;
 }
-
 .calendar-weekdays div:first-child {
     border-left: none;
 }
 
+/* 日付グリッド */
 .calendar-grid {
     display: grid;
     grid-template-columns: repeat(7, 1fr);
@@ -121,6 +83,7 @@ body {
     border-bottom: 1px solid #ccc;
 }
 
+/* 日付セル */
 .day-cell {
     border-right: 1px solid #ccc;
     border-top: 1px solid #ccc;
@@ -130,8 +93,22 @@ body {
     justify-content: center;
     position: relative;
     background: #fff;
+    transition: background 0.2s;
 }
 
+/* ホバー（黄色） */
+.day-cell:hover {
+    background-color: #ffff99 !important;
+    cursor: pointer;
+}
+
+/* 今日（赤字） */
+.day-today {
+    color: red !important;
+    font-weight: bold;
+}
+
+/* 日記ありチェック */
 .day-has-entry::after {
     content: "✔";
     position: absolute;
@@ -141,28 +118,13 @@ body {
     color: green;
 }
 
-.day-sunday {
-    background-color: #ffe0e0;
-}
-
-.day-saturday {
-    background-color: #e0f7fa;
-}
-
-.day-holiday {
-    background-color: #fff3e0; /* 拡張用祝日クラス */
-}
-
-.day-cell:hover {
-    background-color: #e8f4ff;
-    cursor: pointer;
-}
-
-
-
+/* 土曜・日曜・祝日 */
+.day-saturday { background-color: #e0f7fa; }
+.day-sunday   { background-color: #ffe0e0; }
+.day-holiday  { background-color: #ffc0cb; }
 
 /* -----------------------------------------------
-   詳細画面：本文エリア
+   詳細画面
    ----------------------------------------------- */
 .content-area {
     margin-top: 70px;
@@ -179,11 +141,37 @@ textarea {
     padding: 10px;
     font-size: 16px;
     box-sizing: border-box;
-    overflow-y: scroll;
 }
 
 /* -----------------------------------------------
-   レスポンシブ対応
+   フッター（詳細画面）
+   ----------------------------------------------- */
+.footer-btns {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    display: flex;
+}
+
+.footer-btns button {
+    flex: 1;
+    padding: 15px;
+    border: none;
+    font-size: 18px;
+}
+
+.btn-save {
+    background: #4caf50;
+    color: white;
+}
+
+.btn-back {
+    background: #fff;
+    border-top: 1px solid #ccc;
+}
+
+/* -----------------------------------------------
+   レスポンシブ
    ----------------------------------------------- */
 @media screen and (max-width: 600px) {
     .calendar-grid {
