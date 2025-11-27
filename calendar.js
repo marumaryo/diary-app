@@ -1,6 +1,6 @@
-let current = new Date();       // カレンダー表示基準
+let current = new Date(); // カレンダー表示基準
 
-// 祝日データを直接組み込み
+// 祝日データ（そのまま）
 const holidays = {
   "2025-01-01": "元日",
   "2025-01-13": "成人の日",
@@ -46,8 +46,6 @@ const weekdays = [
     { label: "日", type: "sunday" }
 ];
 
-
-
 // 曜日行描画
 function renderWeekdays() {
     const container = document.getElementById("calendarWeekdays");
@@ -61,22 +59,35 @@ function renderWeekdays() {
     });
 }
 
-// カレンダー描画
-function renderCalendar() {
+// Firebaseから日記読み込み（非同期）
+async function loadDiary() {
+    try {
+        const snap = await window.db.collection("diary").doc("entries").get();
+        if (snap.exists) return snap.data();
+        return {};
+    } catch(e) {
+        console.error("loadDiaryエラー:", e);
+        return {};
+    }
+}
+
+// カレンダー描画（非同期対応）
+async function renderCalendar() {
     const grid = document.getElementById("calendarGrid");
     if (!grid) return;
 
     const year = current.getFullYear();
     const month = current.getMonth();
-    const diary = loadDiary();
+    const diary = await loadDiary();
 
     document.getElementById("monthTitle").innerText = `${year}年 ${month+1}月`;
 
-    const firstDay = (new Date(year, month, 1).getDay() + 6) % 7;
+    const firstDay = (new Date(year, month, 1).getDay() + 6) % 7; // 月曜始まり
     const lastDate = new Date(year, month + 1, 0).getDate();
 
     grid.innerHTML = "";
 
+    // 空白セル
     for (let i = 0; i < firstDay; i++) grid.appendChild(document.createElement("div"));
 
     const todayStr = window.TODAY.iso;
@@ -105,6 +116,7 @@ function renderCalendar() {
             cell.title = holidays[dateKey];
         }
 
+        // クリックで詳細ページ
         cell.onclick = () => location.href = `detail.html?date=${dateKey}`;
 
         grid.appendChild(cell);
@@ -118,5 +130,8 @@ function nextMonth() { current.setMonth(current.getMonth() + 1); renderCalendar(
 // 初期描画
 document.addEventListener("DOMContentLoaded", () => {
     renderWeekdays();
-    renderCalendar();
+    // 非同期関数はここで呼び出す
+    (async () => {
+        await renderCalendar();
+    })();
 });
